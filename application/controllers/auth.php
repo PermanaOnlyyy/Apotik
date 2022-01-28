@@ -26,12 +26,14 @@ class Auth extends CI_Controller
 
         $user = $this->db->get_where('admin', ['username' => $email])->row_array();
 
+
         if ($user) {
-            if (password_verify($pass, $user['password'])) {
+            if (password_verify($pass, $user['PASSWORD'])) {
                 $data = [
-                    'email' => $user['email']
+                    'username' => $user['USERNAME']
                 ];
                 $this->session->set_userdata($data);
+
                 redirect('admin');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
@@ -72,5 +74,14 @@ class Auth extends CI_Controller
           </div>');
             redirect('auth');
         }
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('username');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            You Has been Logout!!
+          </div>');
+        redirect('auth');
     }
 }
