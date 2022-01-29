@@ -91,11 +91,6 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="supplier" name="supplier">Supplier</label>
-                            <select name="" id="">
-                            </select>
-                        </div> -->
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Foto</label>
                             <input type="text" class="form-control" id="menu" name="menu" value="<?php echo $o['NAMA_OBAT']; ?>">
