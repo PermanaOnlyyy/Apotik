@@ -25,7 +25,7 @@
                     <tbody>
                         <?php foreach ($obat as $o) : ?>
                             <tr>
-                                <th>Foto</th>
+                                <th><img src="<?= base_url('assets/img/obat/') . $o['FOTO']; ?>" class="img-thumbnail" width="100" height="100"></th>
                                 <th><?= $o['NAMA_OBAT']; ?></th>
                                 <th><?= $o['PRODUSEN']; ?></th>
                                 <th><?= $o['HARGA']; ?></th>
@@ -61,31 +61,31 @@
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Drug name</label>
-                            <input type="text" class="form-control" id="menu" name="menu" value="<?php echo $o['NAMA_OBAT']; ?>">
+                            <label for="name">Drug name</label>
+                            <input type="text" class="form-control" id="name" name="name" value="<?php echo $o['NAMA_OBAT']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Produsen</label>
+                            <label for="produsen">Produsen</label>
                             <input type="text" class="form-control" id="produsen" name="produsen" value="<?php echo $o['PRODUSEN']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Price</label>
-                            <input type="text" class="form-control" id="menu" name="menu" value="<?php echo $o['NAMA_OBAT']; ?>">
+                            <label for="price">Price</label>
+                            <input type="text" class="form-control" id="price" name="price" value="<?php echo $o['HARGA']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Stock</label>
-                            <input type="text" class="form-control" id="menu" name="menu" value="<?php echo $o['NAMA_OBAT']; ?>">
+                            <label for="stock">Stock</label>
+                            <input type="text" class="form-control" id="stock" name="stock" value="<?php echo $o['JML_STOK']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Kode Obat</label>
-                            <input type="text" class="form-control" id="menu" name="menu" value="<?php echo $o['NAMA_OBAT']; ?>">
+                            <label for="Kobat">Kode Obat</label>
+                            <input type="text" class="form-control" id="Kobat" name="Kobat" value="<?php echo $o['KODE_OBAT']; ?>">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect01">Supplier</label>
                             </div>
                             <select class="custom-select" id="inputGroupSelect01">
-                                <option selected>Choose...</option>
+                                <option selected></option>
                                 <?php foreach ($supplier as $s) : ?>
                                     <option value="<?= $s['KODE_SUPPLIER']; ?>"><?= $s['NAMA_SUPPLIER'] ?></option>
                                 <?php endforeach; ?>
@@ -97,14 +97,9 @@
                             </select>
                         </div> -->
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Foto</label>
-                            <input type="text" class="form-control" id="menu" name="menu" value="<?php echo $o['NAMA_OBAT']; ?>">
+                            <label for="foto">Foto</label>
+                            <input type="file" class="form-control" id="foto" name="foto">
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Drug name</label>
-                            <input type="text" class="form-control" id="menu" name="menu" value="<?php echo $o['NAMA_OBAT']; ?>">
-                        </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -123,15 +118,41 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="MenuModalLabel">Add New Menu</h5>
+                <h5 class="modal-title" id="MenuModalLabel">Add New Obat</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('menu') ?>" method="POST">
+            <form action="<?= base_url('drug/add') ?>" method="POST">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Menu Name">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Drug Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="produsen" name="produsen" placeholder="Produsen Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="price" name="price" placeholder="Price">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="stock" name="stock" placeholder="Stock">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="kobat" name="kobat" placeholder="Kode Obat">
+                    </div>
+                    <div class="form-group">
+                        <select class="custom-select" id="supplier" name="supllier">
+                            <option selected>Choose...</option>
+                            <?php foreach ($supplier as $s) : ?>
+                                <option value="<?= $s['KODE_SUPPLIER']; ?>"><?= $s['NAMA_SUPPLIER'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="image" name="image">
+                            <label class="custom-file-label" for="image">Choose file</label>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
