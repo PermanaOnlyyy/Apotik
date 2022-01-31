@@ -91,11 +91,6 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="supplier" name="supplier">Supplier</label>
-                            <select name="" id="">
-                            </select>
-                        </div> -->
                         <div class="form-group">
                             <label for="foto">Foto</label>
                             <input type="file" class="form-control" id="foto" name="foto">
