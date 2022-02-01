@@ -27,23 +27,40 @@ class Drug extends CI_Controller
             'HARGA'  => $this->input->post('price'),
             'JML_STOK'  => $this->input->post('stock'),
         ];
-        $img_upload = $_FILES['image']['name'];
-        if ($img_upload) {
-            $config['allowed_types'] = 'gif|jpg|png|jpeg';
-            $config['max_size']     = '2048';
-            $config['upload_path'] = './assets/img/obat/';
+        // $img_upload = $_FILES['image']['name'];
+        // if ($img_upload) {
+        //     $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        //     $config['max_size']     = '2048';
+        //     $config['upload_path'] = './assets/img/obat/';
 
-            $this->load->library('upload', $config);
-            if ($this->upload->do_upload('image')) {
-                $old_image = $data['obat']['FOTO'];
-                if ($old_image != 'undraw_profile_2.svg') {
-                    unlink(FCPATH . '/assets/img/OBAT/' . $old_image);
-                }
+        //     $this->load->library('upload', $config);
+        //     if ($this->upload->do_upload('image')) {
+        //         $old_image = $data['obat']['FOTO'];
+        //         if ($old_image != 'undraw_profile_2.svg') {
+        //             unlink(FCPATH . '/assets/img/OBAT/' . $old_image);
+        //         }
 
-                $new_image = $this->upload->data('file_name');
-                $this->db->insert('FOTO', $new_image);
-            }
-        }
+        //         $new_image = $this->upload->data('file_name');
+        //         $this->db->insert('FOTO', $new_image);
+        // }
+        // 
         $this->db->insert('obat ', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+                New Drug Hasss been added
+              </div>');
+        redirect('drug');
+    }
+
+    public function delete($id)
+    {
+        $this->db->where('KODE_OBAT', $id);
+        $this->db->delete('obat');
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        Drug Hass Been Deleted
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>');
+        redirect('drug');
     }
 }

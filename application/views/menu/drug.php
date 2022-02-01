@@ -4,15 +4,15 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Drug List</h6>
-
         </div>
+        <?= $this->session->flashdata('message') ?>
         <div class="card-body">
             <div class="table-responsive">
                 <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#MenuModal">Add New Drug </a>
-                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Foto</th>
+                            <!-- <th>Foto</th> -->
                             <th>Nama Obat</th>
                             <th>Produsen</th>
                             <th>Harga</th>
@@ -25,7 +25,7 @@
                     <tbody>
                         <?php foreach ($obat as $o) : ?>
                             <tr>
-                                <th><img src="<?= base_url('assets/img/obat/') . $o['FOTO']; ?>" class="img-thumbnail" width="100" height="100"></th>
+                                <!-- <th><img src="<?= base_url('assets/img/obat/') . $o['FOTO']; ?>" class="img-thumbnail" width="100" height="100"></th> -->
                                 <th><?= $o['NAMA_OBAT']; ?></th>
                                 <th><?= $o['PRODUSEN']; ?></th>
                                 <th><?= $o['HARGA']; ?></th>
@@ -34,7 +34,7 @@
                                 <th><?= $o['KODE_SUPPLIER']; ?></th>
                                 <th>
                                     <a href="" class="badge badge-sm badge-info" data-toggle="modal" data-target="#modal<?php echo $o['KODE_OBAT']; ?>">Edit</a>
-                                    <a href="" class="badge badge-danger">Hapus</a>
+                                    <a href="<?= base_url('drug/delete/') . $o['KODE_OBAT'] ?>" class="badge badge-danger" onclick="return confirm('yakin');">Hapus</a>
                                 </th>
                             </tr>
                         <?php endforeach; ?>
@@ -136,7 +136,7 @@
                         <input type="text" class="form-control" id="kobat" name="kobat" placeholder="Kode Obat">
                     </div>
                     <div class="form-group">
-                        <select class="custom-select" id="supplier" name="supllier">
+                        <select class="custom-select" id="supplier" name="supplier">
                             <option selected>Choose...</option>
                             <?php foreach ($supplier as $s) : ?>
                                 <option value="<?= $s['KODE_SUPPLIER']; ?>"><?= $s['NAMA_SUPPLIER'] ?></option>
